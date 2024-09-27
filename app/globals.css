@@ -1,0 +1,28 @@
+.dFlex {
+    display: flex;
+}
+
+.sidebar {
+    padding: 15px;
+    box-sizing: border-box;
+    min-width: 200px;
+    /* Matches MIN_WIDTH in component */
+    max-width: 600px;
+    /* Matches MAX_WIDTH in component */
+}
+
+.resizer {
+    width: 5px;
+    cursor: col-resize;
+    background-color: #ccc;
+}
+
+.resizer:hover {
+    background-color: #888;
+}
+
+.mainContent {
+    flex-grow: 1;
+    padding: 16px;
+}
+
