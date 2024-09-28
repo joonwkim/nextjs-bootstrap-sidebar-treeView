@@ -81,7 +81,7 @@ const TreeView: React.FC<TreeViewProps> = ({ nodes }) => {
 
     const renderTreeNodes = (nodeList: TreeNode[], level = 0) => {
         return (
-            <ul className={`list-unstyled ms-${level * 2}`}>
+            <ul className={`list-unstyled indent-${level}`}>
                 {nodeList.map(node => (
                     <li key={node.id} className='nodeWrapper'>
                         <div className='d-flex align-items-center justify-content-between nodeItem' onMouseEnter={() => setShowMenu(node.id)} onMouseLeave={() => setShowMenu(null)}                        >
