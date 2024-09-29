@@ -12,12 +12,6 @@ const TreeView: React.FC<TreeViewProps> = ({ nodes }) => {
     const [showMenu, setShowMenu] = useState<string | null>(null);
     const [showDialog, setShowDialog] = useState(false);
     const [currentNode, setCurrentNode] = useState<TreeNode | null>(null);
-    // const [contextMenu, setContextMenu] = useState<{ visible: boolean; x: number; y: number; nodeId: string | null }>({
-    //     visible: false,
-    //     x: 0,
-    //     y: 0,
-    //     nodeId: null,
-    // });
 
     const router = useRouter();
 
@@ -43,25 +37,9 @@ const TreeView: React.FC<TreeViewProps> = ({ nodes }) => {
         }
     };
 
-    // const handleContextMenu = (event: React.MouseEvent, nodeId: string | null) => {
-    //     event.preventDefault();
-    //     setContextMenu({
-    //         visible: true,
-    //         x: event.pageX,
-    //         y: event.pageY,
-    //         nodeId,
-    //     });
-
-    // };
-
-    // const closeContextMenu = () => {
-    //     setContextMenu({ visible: false, x: 0, y: 0, nodeId: null });
-    // };
-
     const openDialog = (node: TreeNode) => {
         setCurrentNode(node);
         setShowDialog(true);
-        // closeContextMenu();
     };
 
     const addNode = (newNode: Omit<TreeNode, 'id'>) => {
