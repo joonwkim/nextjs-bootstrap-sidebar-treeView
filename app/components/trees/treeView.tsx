@@ -4,11 +4,11 @@ import './styles.css'
 import { useRouter } from 'next/navigation';
 
 interface TreeViewProps {
-    nodes: TreeNode[];
+    nodes?: TreeNode[];
 }
 
 const TreeView: React.FC<TreeViewProps> = ({ nodes }) => {
-    const [treeData, setTreeData] = useState<TreeNode[]>(nodes);
+    const [treeData, setTreeData] = useState<TreeNode[]>(nodes ? nodes : []);
     const [showMenu, setShowMenu] = useState<string | null>(null);
     const [showDialog, setShowDialog] = useState(false);
     const [currentNode, setCurrentNode] = useState<TreeNode | null>(null);

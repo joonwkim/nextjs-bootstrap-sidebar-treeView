@@ -46,9 +46,6 @@
 .dialog h4 {
     margin-bottom: 10px;
 }
-/* .tree-node {
-    margin-left: calc(var(--level) * 1.5rem);
-} */
 
 .indent-0 {
     margin-left: 0rem;
