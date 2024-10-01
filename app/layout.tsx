@@ -26,7 +26,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const THEME_KEY = 'theme-preference';
+const THEME_KEY = 'theme';
 
 
 
@@ -48,7 +48,8 @@ export default function RootLayout({
       setTheme(savedTheme);
       applyTheme(savedTheme);
     } else {
-      applyTheme('auto');
+      localStorage.setItem(THEME_KEY, 'light');
+      applyTheme('light');
     }
   }, [applyTheme]);
 
@@ -101,7 +102,7 @@ export default function RootLayout({
           <div className='dFlex'>
             <div ref={sidebarRef} className='sidebar'>
               <h5>메뉴</h5>
-              <TreeView nodes={treeData} />
+              <TreeView nodes={treeData} theme={theme} />
             </div>
             <div onMouseDown={handleMouseDown} className='resizer' />
             <div className='mainContent'>

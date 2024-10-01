@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react';
 import { TreeNode } from '../../types/treeMenu';
 import './styles.css'
@@ -5,13 +6,19 @@ import { useRouter } from 'next/navigation';
 
 interface TreeViewProps {
     nodes?: TreeNode[];
+    theme: 'light' | 'dark' | 'auto'
 }
 
-const TreeView: React.FC<TreeViewProps> = ({ nodes }) => {
+
+const TreeView: React.FC<TreeViewProps> = ({ nodes, theme }) => {
     const [treeData, setTreeData] = useState<TreeNode[]>(nodes ? nodes : []);
     const [showMenu, setShowMenu] = useState<string | null>(null);
     const [showDialog, setShowDialog] = useState(false);
-    const [currentNode, setCurrentNode] = useState<TreeNode | null>(null);
+    const [currentNode, setCurrentNode] = useState<TreeNode | null>(null);  
+    const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+
+
+
 
     const router = useRouter();
 
@@ -31,10 +38,12 @@ const TreeView: React.FC<TreeViewProps> = ({ nodes }) => {
         setTreeData(updatedTree);
     };
 
-    const handleNodeClick = (url: string | undefined) => {
+    const handleNodeClick = (id: string, url: string | undefined) => {
+        setSelectedNodeId(id); 
         if (url) {
             router.push(url);
-        }
+        } 
+
     };
 
     const openDialog = (node: TreeNode) => {
@@ -61,14 +70,13 @@ const TreeView: React.FC<TreeViewProps> = ({ nodes }) => {
         return (
             <ul className={`list-unstyled indent-${level}`}>
                 {nodeList.map(node => (
-                    <li key={node.id} className='nodeWrapper'>
-                        <div className='d-flex align-items-center justify-content-between nodeItem' onMouseEnter={() => setShowMenu(node.id)} onMouseLeave={() => setShowMenu(null)}                        >
-                            <div className="d-flex align-items-center" onClick={() => handleNodeClick(node.url)}>
-                                {/* Node Name and Icon */}
+                    <li key={node.id} className={`${selectedNodeId === node.id && !node.children?.length ? theme === 'dark' ? 'selectedLeafNodeDark' : 'selectedLeafNodeLight' : ''}`}>
+                        <div className='d-flex align-items-center justify-content-between nodeItem' onMouseEnter={() => setShowMenu(node.id)} onMouseLeave={() => setShowMenu(null)}>
+                            <div className="d-flex align-items-center" onClick={() => handleNodeClick(node.id, node.url)}>
+                                {/* Node Icon and Name */}
                                 <i className={`bi ${node.icon} me-2`} />
                                 <span>{node.name}</span>
                             </div>
-
                             {/* Chevron for expanding/collapsing at the end */}
                             <div className="d-flex align-items-center">
                                 {node.children && node.children.length > 0 && (

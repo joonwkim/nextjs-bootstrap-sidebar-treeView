@@ -3,10 +3,11 @@
     padding-left: 0;
 }
 
-.nodeWrapper {
+/* .nodeWrapper {
     position: relative;
 }
 
+*/
 .nodeItem {
     cursor: pointer;
     padding: 5px 0;
@@ -81,4 +82,11 @@
 
 .indent-8 {
     margin-left: 8rem;
+}
+.selectedLeafNodeDark {
+    background-color: #34495e;
+}
+
+.selectedLeafNodeLight {
+    background-color: #e0f7fa;
 }
